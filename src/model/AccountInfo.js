@@ -1,6 +1,7 @@
-export default class AccountInfo{
+export const AccountInfo = class AccountInfo{
   constructor(json){
-      this.city= json.city || '',
+    console.log("12312");
+    this.city= json.city || '',
       this.eleme_key= json.eleme_key || '',
       this.figureurl= json.figureurl || '',
       this.figureurl_1= json.figureurl_1 || '',

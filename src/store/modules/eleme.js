@@ -1,4 +1,4 @@
-import AccountInfo from '../../model/AccountInfo'
+import {AccountInfo} from '../../model/AccountInfo'
 import * as types from '../mutation-types'
 const state = {
   accounts:[],
@@ -8,10 +8,10 @@ const state = {
 }
 
 const getters = {
-  // accounts: state => state.accounts,
-  // mainAccount: state => state.mainAccount,
-  // loading: state => state.loading,
-  // loading_msg: state => state.loading_msg,
+  accounts: state => state.accounts,
+  mainAccount: state => state.mainAccount,
+  loading: state => state.loading,
+  loading_msg: state => state.loading_msg,
 }
 
 const  actions = {
@@ -21,7 +21,8 @@ const  actions = {
   changeLoadingState({ commit }, loading){
     commit(types.CHANGE_LOADING_STATE, {loading: loading});
   },
-  addAccount({coomit}, {isMain, account}){
+  addAccount({commit},{isMain, account}){
+    console.log("asdasda");
     commit({
       type: types.SET_ACCOUNT_INFO,
       isMain: isMain,
@@ -38,11 +39,13 @@ const mutations = {
     state.loading = loading;
   },
   [types.SET_ACCOUNT_INFO] (state, { isMain, account }){
+    var accObj = new AccountInfo(account);
+    console.log(accObj);
     if(isMain){
       //主
-      state.mainAccount = account
+      state.mainAccount = accObj
     }else {
-      state.accounts.push(account)
+      state.accounts.push(accObj)
     }
   }
 }

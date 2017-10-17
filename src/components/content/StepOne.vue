@@ -14,7 +14,7 @@
 
           <el-form-item label="监测账号">
             <el-col :span="16">
-              <el-input v-model="accountInfo.detectACC.codeUrl"></el-input>
+              <el-input v-model="detectCodeUrl"></el-input>
             </el-col>
             <el-col :span="8">
               <el-button type="primary" @click="toThridLogin">饿了么登录</el-button>
@@ -23,7 +23,7 @@
 
           <el-form-item label="主账号">
             <el-col :span="16">
-              <el-input v-model="accountInfo.mainAcc.codeUrl"></el-input>
+              <el-input v-model="mainCodeUrl"></el-input>
             </el-col>
             <el-col :span="8">
               <el-button type="primary" @click="toThridLogin">饿了么登录</el-button>
@@ -48,44 +48,42 @@
     import Axios from 'axios'
     import Utils from '../../assets/js/Utils'
     import UrlTools from '../../assets/js/UrlTools'
-    import AccountInfo from '../../model/AccountInfo'
-    import {mapGetters, mapActions} from 'vuex'
+    import {AccountInfo} from '../../model/AccountInfo'
+    import {mapState, mapGetters, mapActions} from 'vuex'
     import * as types from '../../store/mutation-types'
     export default {
         name: 'StepOne',
 //        props:['curStep'],
         computed:{
-//          ...mapGetters([
-//            'loading',
-//            'loading_msg',
-//          ])
-          loading(){
-            console.log(this.$store.getters);
-            return this.$store.getters.loading;
-          },
+          ...mapGetters([
+            'loading',
+            'loading_msg',
+          ])
+//          loading(){
+//            console.log(this.$store.getters);
+//            return this.$store.getters.loading;
+//          },
         },
         data() {
             return {
 //              loading_msg:'正在获取检测账号登录信息...',
 //              loading: '',
               radio3: 'detect_mode',
-              accountInfo:{
-                detectACC:new AccountInfo({}),
-                mainAcc:new AccountInfo({}),
-
-              }
+              mainCodeUrl:'',
+              detectCodeUrl:'',
             }
         },
         methods: {
           ...mapActions([
             'changeLoadingMsg',
-            'changeLoadingState'
+            'changeLoadingState',
+            'addAccount',
           ]),
           comDetectCode(){
-            if(this.accountInfo.detectACC.codeUrl == ''){
+            if(this.detectCodeUrl == ''){
               return ''
             }
-            var ret = UrlTools.urlParse(this.accountInfo.detectACC.codeUrl);
+            var ret = UrlTools.urlParse(this.detectCodeUrl);
             console.log(ret);
             if (ret.code){
               return ret.code
@@ -93,10 +91,10 @@
             return ''
           },
           comMainCode(){
-            if(this.accountInfo.mainAcc.codeUrl == ''){
+            if(this.mainCodeUrl == ''){
               return ''
             }
-            var ret = UrlTools.urlParse(this.accountInfo.mainAcc.codeUrl);
+            var ret = UrlTools.urlParse(this.mainCodeUrl);
             console.log(ret);
             if (ret.code){
               return ret.code
@@ -120,7 +118,7 @@
               self.changeLoadingState(false);
               console.log(res);
               if (res.data){
-                self.accountInfo.detectACC.setData(res.data);
+                self.addAccount({isMain:false,account:res.data});
                 console.log(res.data);
                 self.to_next_step();
                 return;
@@ -128,7 +126,7 @@
                 self.changeLoadingMsg("正在获取主账号登录信息...");
                 self.getUserInfo(self.comMainCode(), function (res) {
                   self.changeLoadingState(false);
-                  self.accountInfo.mainAcc.setData(res.data);
+                  self.addAccount({isMain:true,account:res.data});
                   console.log('main'+res.data);
                   //得到数据后 跳转
 

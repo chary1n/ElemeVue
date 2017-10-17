@@ -8,7 +8,7 @@ import router from './router'
 Vue.config.productionTip = false
 
 import Axios from 'axios'
-Vue.use(Axios);
+// Vue.use(Axios);
 
 import {store} from './store/index'
 
