@@ -46,4 +46,12 @@
   background-color: #eef1f6;
   border-bottom: 5px solid #20a0ff;
 }
+.ava-img40{
+  height:40px;
+  border-radius:50%;
+}
+.ava-img70{
+  height:70px;
+  border-radius:50%;
+}
 </style>

@@ -19,7 +19,7 @@
           <el-dropdown>
             <!--<span class="el-dropdown-link">-->
             <div>
-              <img id="avatar-img" src="../../assets/ava.jpg" class="el-dropdown-link ava-img" alt="" >
+              <img id="avatar-img" src="../../assets/ava.jpg" class="el-dropdown-link ava-img40" alt="" >
               <label for="avatar-img" class="username-span">{{username}}</label>
             </div>
             <!--</span>-->
@@ -81,10 +81,6 @@
   float: right;
   margin: 10px 10px;
 }
-  .ava-img{
-    height:40px;
-    border-radius:50%;
-  }
   .username-span{
     color: #fff;
     float: right;

@@ -1,5 +1,8 @@
 export default {
   urlParse(url){
+    if(!url){
+      return{}
+    }
     console.log("1111");
     let obj = {};
     let reg = /[?&][^?&]+=[^?&%]+/g;
@@ -18,5 +21,6 @@ export default {
     }
 
 
-  }
+  },
+
 }
