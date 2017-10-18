@@ -31,7 +31,7 @@
           </el-form-item>
 
           <el-form-item label="手机号码">
-            <el-input></el-input>
+            <el-input v-model="phone"></el-input>
           </el-form-item>
 
           <el-form-item>
@@ -69,6 +69,7 @@
 //              loading_msg:'正在获取检测账号登录信息...',
 //              loading: '',
               radio3: 'detect_mode',
+              phone: '',
               mainCodeUrl:'',
               detectCodeUrl:'',
             }
@@ -121,13 +122,13 @@
                 self.addAccount({isMain:false,account:res.data});
                 console.log(res.data);
                 self.to_next_step();
-                return;
                 self.changeLoadingState(true);
                 self.changeLoadingMsg("正在获取主账号登录信息...");
-                self.getUserInfo(self.comMainCode(), function (res) {
+                self.getUserInfo(self.comMainCode(), function (res1) {
                   self.changeLoadingState(false);
-                  self.addAccount({isMain:true,account:res.data});
-                  console.log('main'+res.data);
+                  re1.data.phone = self.phone;
+                  self.addAccount({isMain:true,account:res1.data});
+                  console.log('main'+res1.data);
                   //得到数据后 跳转
 
                 },function () {

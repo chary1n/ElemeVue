@@ -1,15 +1,26 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import * as actions from './actions'
-import * as getters from './getters'
-import eleme from './modules/eleme'
-import AccountInfo from '../model/AccountInfo'
+import actions from './actions'
+import mutations from './mutations'
+import getters from './getters'
+// import eleme from './modules/eleme'
+
 Vue.use(Vuex);
+import {AccountInfo} from '../model/AccountInfo'
+import * as types from './mutation-types'
+
+
 
 export const store = new Vuex.Store({
   actions,
-  getters,
-  modules: {
-    eleme,
+  mutations,
+  getters:getters,
+
+  state: {
+    accounts:[],
+    mainAccount:'',
+    loading:'',
+    loading_msg:'正在获取检测账号登录信息...',
   }
+
 });

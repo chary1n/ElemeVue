@@ -2,14 +2,22 @@ import {AccountInfo} from '../../model/AccountInfo'
 import * as types from '../mutation-types'
 const state = {
   accounts:[],
-  mainAccount:new AccountInfo({}),
+  mainAccount:'',
   loading:'',
   loading_msg:'正在获取检测账号登录信息...',
 }
 
 const getters = {
-  accounts: state => state.accounts,
-  mainAccount: state => state.mainAccount,
+  accounts: state => {
+    // if (state.accounts.length == 0){
+      state.accounts = Lockr.get("accounts");
+    // }
+  },
+  mainAccount:state => {
+    if (state.mainAccount == undefined){
+      state.mainAccount = Lockr.get("mainAccount");
+    }
+  },
   loading: state => state.loading,
   loading_msg: state => state.loading_msg,
 }
@@ -44,8 +52,10 @@ const mutations = {
     if(isMain){
       //主
       state.mainAccount = accObj
+      Lockr.set("mainAccount", accObj);
     }else {
-      state.accounts.push(accObj)
+      state.accounts.push(accObj);
+      Lockr.set("accounts", state.accounts);
     }
   }
 }

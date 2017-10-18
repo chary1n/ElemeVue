@@ -5,6 +5,7 @@ import 'element-ui/lib/theme-default/index.css'
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import Lockr from 'lockr'
 Vue.config.productionTip = false
 
 import Axios from 'axios'
@@ -12,8 +13,12 @@ import Axios from 'axios'
 
 import {store} from './store/index'
 
-Vue.use(ElementUI);
 
+window.Lockr = Lockr;
+
+
+
+Vue.use(ElementUI);
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

@@ -5,12 +5,23 @@
         <el-form label-width="100px">
           <el-row>
           <el-col :span="12" class="form-left">
-            <AccountInfo></AccountInfo>
+            <AccountInfo :isMain="false"></AccountInfo>
           </el-col>
           <el-col :span="12" class="form-right">
-            <AccountInfo></AccountInfo>
+            <AccountInfo :isMain="true"></AccountInfo>
           </el-col>
         </el-row>
+          <el-row class="hongbao-url-area">
+            <el-col  :span="12">
+              <el-form-item label="红包地址" >
+                <el-input></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :span="11" :offset="1">
+                <el-button type="primary" @click="startDetect">开始监测</el-button>
+            </el-col>
+          </el-row>
+
         </el-form>
       </el-card>
     </div>
@@ -20,12 +31,15 @@
     //  import Axios from 'axios'
     import ElCol from "element-ui/packages/col/src/col";
     import ElFormItem from "../../../node_modules/element-ui/packages/form/src/form-item.vue";
-    import AccountInfo from "../../components/content/AccountInfo.vue"
+    import AccountInfo from '../../components/content/AccountInfo.vue'
+    import ElButtonGroup from "../../../node_modules/element-ui/packages/button/src/button-group.vue";
     export default {
       components: {
+        ElButtonGroup,
         ElFormItem,
         ElCol,
-        AccountInfo},
+        AccountInfo,
+      },
       name: 'StepTwo',
         data() {
             return {
@@ -33,14 +47,9 @@
             }
         },
         methods: {
-//    get(){
-//      Axios.get("https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=aaaa").then(function (res) {
-//        console.log(res);
-//      }).catch(function (err) {
-//        console.log(err);
-//
-//      })
-//    }
+          startDetect(){
+
+          }
         }
     }
 </script>
@@ -59,4 +68,7 @@
 .step-2-box .el-form-item{
   margin-bottom:0px;
 }
+  .hongbao-url-area{
+    margin-top: 30px;
+  }
 </style>
