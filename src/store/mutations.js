@@ -5,6 +5,7 @@ const mutations = {
     state.loading_msg = msg;
   },
   [types.CHANGE_LOADING_STATE] (state, loading){
+    console.log("loading----" + loading)
     state.loading = loading;
   },
   [types.SET_ACCOUNT_INFO] (state, { isMain, account }){
@@ -15,9 +16,12 @@ const mutations = {
       state.mainAccount = accObj
       Lockr.set("mainAccount", accObj);
     }else {
-      state.accounts.push(accObj);
-      Lockr.set("accounts", state.accounts);
+      state.accounts = accObj;
+      Lockr.set("accounts", accObj);
     }
+  },
+  [types.UPDATE_LOG_MSG] (state, str){
+    state.log_msg = str + '\n';
   }
 }
 

@@ -14,7 +14,14 @@ const  actions = {
       isMain: isMain,
       account: account
     })
+  },
+  updateLogMsg({commit}, str){
+    commit({
+      type: types.UPDATE_LOG_MSG,
+      str: str,
+    })
   }
+
 }
 
 

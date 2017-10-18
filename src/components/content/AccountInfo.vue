@@ -5,7 +5,7 @@
           <strong v-else="">主账号信息</strong>
         </div>
         <div style="margin-top: 20px; text-align: center">
-          <img class="ava-img70" src="http://q.qlogo.cn/qqapp/101204453/821FBBF23166EFAC8D68F1C596639C33/100" alt="">
+          <img class="ava-img70" :src="accountInfo.figureurl_qq_2" alt="">
         </div>
 
         <!--</el-form-item>-->
@@ -40,11 +40,11 @@
         accountInfo(){
           console.log(this.mainAccount);
           if(this.isMain){
-            return this.mainAccount || {}
+            return this.mainAccount
           }
           else {
             console.log(this.accounts);
-            return this.accounts[0] || {}
+            return this.accounts
           }
         }
       },

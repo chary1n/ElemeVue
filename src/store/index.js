@@ -17,10 +17,11 @@ export const store = new Vuex.Store({
   getters:getters,
 
   state: {
-    accounts:[],
+    accounts:'',
     mainAccount:'',
     loading:'',
     loading_msg:'正在获取检测账号登录信息...',
+    log_msg: '',
   }
 
 });

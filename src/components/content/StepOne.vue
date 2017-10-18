@@ -121,20 +121,18 @@
               if (res.data){
                 self.addAccount({isMain:false,account:res.data});
                 console.log(res.data);
-                self.to_next_step();
                 self.changeLoadingState(true);
                 self.changeLoadingMsg("正在获取主账号登录信息...");
                 self.getUserInfo(self.comMainCode(), function (res1) {
                   self.changeLoadingState(false);
-                  re1.data.phone = self.phone;
+                  res1.data["phone"] = self.phone;
                   self.addAccount({isMain:true,account:res1.data});
-                  console.log('main'+res1.data);
                   //得到数据后 跳转
-
-                },function () {
+                  self.to_next_step();
+                },function (err) {
                   //登录失败
                   self.changeLoadingState(false);
-                  self.showAlert('获取登录信息失败，请重试',function () {
+                  self.showAlert('获取主账号登录信息失败，请重试'+ err,function () {
                   },function () {
                   });
                 })
@@ -142,7 +140,7 @@
               else {
                 self.changeLoadingState(false);
                 //登录失败
-                self.showAlert('获取登录信息失败，请重试',function () {
+                self.showAlert('获取登录信息失败，请重试'+ err,function () {
                 },function () {
                 });
               }

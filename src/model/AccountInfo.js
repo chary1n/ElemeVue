@@ -21,6 +21,7 @@ export const AccountInfo = class AccountInfo{
       this.vip= json.vip || '',
       this.year= json.year || '',
       this.yellow_vip_level= json.yellow_vip_level || ''
+      this.phone= json.phone || ''
   }
   setData(json){
     for (var key in json){
