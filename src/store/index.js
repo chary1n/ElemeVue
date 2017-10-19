@@ -21,7 +21,7 @@ export const store = new Vuex.Store({
     mainAccount:'',
     loading:'',
     loading_msg:'正在获取检测账号登录信息...',
-    log_msg: '',
+    log_msg: [],
   }
 
 });

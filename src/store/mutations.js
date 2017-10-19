@@ -20,8 +20,9 @@ const mutations = {
       Lockr.set("accounts", accObj);
     }
   },
-  [types.UPDATE_LOG_MSG] (state, str){
-    state.log_msg = str + '\n';
+  [types.UPDATE_LOG_MSG] (state, payload){
+    state.log_msg.splice(0, 0, payload.str);
+    console.log(state.log_msg);
   }
 }
 

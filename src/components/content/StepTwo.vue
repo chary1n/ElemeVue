@@ -21,6 +21,11 @@
                 <el-button type="primary" @click="startDetect">开始监测</el-button>
             </el-col>
           </el-row>
+          <el-row>
+            <el-col :span="24">
+              <EventLog></EventLog>
+            </el-col>
+          </el-row>
 
         </el-form>
       </el-card>
@@ -29,6 +34,8 @@
 
 <script>
     //  import Axios from 'axios'
+    import {mapActions} from 'vuex'
+    import EventLog from '../content/EventLog.vue';
     import ElCol from "element-ui/packages/col/src/col";
     import ElFormItem from "../../../node_modules/element-ui/packages/form/src/form-item.vue";
     import AccountInfo from '../../components/content/AccountInfo.vue'
@@ -39,6 +46,7 @@
         ElFormItem,
         ElCol,
         AccountInfo,
+        EventLog,
       },
       name: 'StepTwo',
         data() {
@@ -47,8 +55,11 @@
             }
         },
         methods: {
+          ...mapActions([
+            'updateLogMsg'
+          ]),
           startDetect(){
-
+            this.updateLogMsg({time1:new Date().toTimeString(),msg:'msgadasdasdasdamsgadasdasdasdamsgadasdasdasda'});
           }
         }
     }
