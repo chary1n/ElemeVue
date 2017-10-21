@@ -40,6 +40,7 @@
     import ElFormItem from "../../../node_modules/element-ui/packages/form/src/form-item.vue";
     import AccountInfo from '../../components/content/AccountInfo.vue'
     import ElButtonGroup from "../../../node_modules/element-ui/packages/button/src/button-group.vue";
+    import {ElemeCoupon, IS_CONTINUE}from '../../assets/js/ElemeCoupon'
     export default {
       components: {
         ElButtonGroup,
@@ -59,6 +60,8 @@
             'updateLogMsg'
           ]),
           startDetect(){
+            ElemeCoupon("https://h5.ele.me/hongbao#hardware_id=&is_lucky_group=True&lucky_number=7&track_id=&platform=4&sn=10d3f051168c68de&theme_id=1489&device_id=");
+
             this.updateLogMsg({time1:new Date().toTimeString(),msg:'msgadasdasdasdamsgadasdasdasdamsgadasdasdasda'});
           }
         }
